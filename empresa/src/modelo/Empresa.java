@@ -11,15 +11,15 @@ package modelo;
  */
 public class Empresa {
     
-    private int codigo;
+    private Integer codigo;
     private String nomefantasia;
     private String razaosocial;
 
-    public int getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 

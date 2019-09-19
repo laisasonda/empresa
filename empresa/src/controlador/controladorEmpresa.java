@@ -35,9 +35,15 @@ public static void inserir(ManutencaoEmpresa man){
         boolean resultado = DaoEmpresa.inserir(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Inserido com sucesso!");
-        } else {
+            if (man.listagem != null) {
+     atualizarTabela(man.listagem.tabela); //atualizar a tabela da listagem
+}
+man.dispose();//fechar a tela da manutenção
+        } 
+        else {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
+        
 }
 
    public static void alterar(ManutencaoEmpresa man){
@@ -50,6 +56,10 @@ public static void inserir(ManutencaoEmpresa man){
         boolean resultado = DaoEmpresa.alterar(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+            if (man.listagem != null) {
+     atualizarTabela(man.listagem.tabela); //atualizar a tabela da listagem
+}
+man.dispose();//fechar a tela da manutenção
         } else {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
@@ -62,6 +72,10 @@ public static void inserir(ManutencaoEmpresa man){
         boolean resultado = DaoEmpresa.excluir(objeto);
         if (resultado) {
             JOptionPane.showMessageDialog(null, "Excluído com sucesso!");
+            if (man.listagem != null) {
+     atualizarTabela(man.listagem.tabela); //atualizar a tabela da listagem
+}
+man.dispose();//fechar a tela da manutenção
         } else {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
@@ -85,4 +99,15 @@ public static void inserir(ManutencaoEmpresa man){
         }
         tabela.setModel(modelo);
     } 
+    public static void atualizaCampos(ManutencaoEmpresa man, int pk){ 
+        Empresa objeto = DaoEmpresa.consultar(pk);
+        //Definindo os valores do campo na tela (um para cada atributo/campo)
+        man.jtfcodigo.setText(objeto.getCodigo().toString());
+        man.jtfNomefantasia.setText(objeto.getNomefantasia());
+        man.jtfRazaosocial.setText(objeto.getRazaosocial());
+        
+        man.jtfcodigo.setEnabled(false); //desabilitando o campo código
+        man.btnAdicionar.setEnabled(false); //desabilitando o botão adicionar
+    }
+   
 }
